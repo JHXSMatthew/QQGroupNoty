@@ -1,9 +1,13 @@
 package com.github.JHXSMatthew;
 
+import rocks.xmpp.addr.Jid;
+import rocks.xmpp.core.XmppException;
 import rocks.xmpp.core.session.TcpConnectionConfiguration;
 import rocks.xmpp.core.session.XmppClient;
+import rocks.xmpp.core.stanza.model.Message;
 
 import java.io.*;
+import java.util.Arrays;
 
 /**
  * Created by JHXSMatthew on 11/18/2017.
@@ -21,24 +25,53 @@ public class XmppReceiver {
     private TcpConnectionConfiguration tcpConnectionConfiguration;
 
 
-    public XmppReceiver(Callback observer) throws IOException {
+    public XmppReceiver(Callback observer) throws IOException, XmppException {
         this.observer = observer;
         loadConfig();
         setUp();
-        client = XmppClient.create(HOST);
+        System.out.println("配置加载完成....");
+
+        System.out.println("连接中...");
+
+        connect();
+        System.out.println("登陆成功,当前用户 Jid: " + client.getConnectedResource());
+
 
     }
 
+    private void connect() throws XmppException {
+        client = XmppClient.create(HOST);
+        client.connect();
 
+        client.addInboundMessageListener(e ->{
+            Message message = e.getMessage();
+            System.err.println("------------------------------------");
+            System.err.println("New Message");
+            System.err.println("Message Type: " + message.getType().name());
+            System.err.println("Message Subject " + message.getSubject());
+            System.err.println("Message: " + message.getBody());
+            System.err.println("From" + e.getSource().toString());
+            System.err.println(message.toString());
+            System.err.println("------------------------------------");
+            if(message.getFrom().toString().contains("directorbot")){
+              observer.onMessageReceived(message);
+            }
+        });
 
+        client.login(USERNAME,PASSWORD);
+    }
 
-
+    public void run() throws InterruptedException {
+        synchronized (this) {
+            wait();
+        }
+    }
 
     private void loadConfig() throws IOException {
         File f = new File("config");
         BufferedReader reader = new BufferedReader(new FileReader(f));
         String line = reader.readLine();
-        String[] split = line.split("|");
+        String[] split = line.split("\\|");
         HOST = split[0];
         PORT = split[1];
         USERNAME = split[2];

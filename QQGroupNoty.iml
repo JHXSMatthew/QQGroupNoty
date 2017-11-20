@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <module org.jetbrains.idea.maven.project.MavenProjectsManager.isMavenModule="true" type="JAVA_MODULE" version="4">
-  <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_1_5">
+  <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_1_8">
     <output url="file://$MODULE_DIR$/target/classes" />
     <output-test url="file://$MODULE_DIR$/target/test-classes" />
     <content url="file://$MODULE_DIR$">
@@ -11,12 +11,13 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="foolqq-1.2" level="project" />
+    <orderEntry type="library" name="Maven: com.1stleg:jnativehook:2.0.2" level="project" />
     <orderEntry type="library" name="Maven: rocks.xmpp:xmpp-core-client:0.7.4" level="project" />
     <orderEntry type="library" name="Maven: rocks.xmpp:xmpp-core:0.7.4" level="project" />
     <orderEntry type="library" name="Maven: rocks.xmpp:xmpp-addr:0.7.4" level="project" />
     <orderEntry type="library" name="Maven: rocks.xmpp:precis:0.1.0" level="project" />
     <orderEntry type="library" name="Maven: rocks.xmpp:xmpp-extensions-client:0.7.4" level="project" />
     <orderEntry type="library" name="Maven: rocks.xmpp:xmpp-extensions:0.7.4" level="project" />
-    <orderEntry type="library" name="foolqq-1.2" level="project" />
   </component>
 </module>
