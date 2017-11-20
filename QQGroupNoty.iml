@@ -19,5 +19,6 @@
     <orderEntry type="library" name="Maven: rocks.xmpp:precis:0.1.0" level="project" />
     <orderEntry type="library" name="Maven: rocks.xmpp:xmpp-extensions-client:0.7.4" level="project" />
     <orderEntry type="library" name="Maven: rocks.xmpp:xmpp-extensions:0.7.4" level="project" />
+    <orderEntry type="library" name="Maven: foolqq:foolqq:1.2" level="project" />
   </component>
 </module>

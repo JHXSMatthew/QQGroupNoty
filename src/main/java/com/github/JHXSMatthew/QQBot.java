@@ -17,7 +17,7 @@ public class QQBot {
     BaseQQWindowContext context;
 
     public QQBot(String picName) throws IOException, AWTException, NativeHookException {
-        System.out.println("图片验证: "+  ImgChkHelper.validImage("ps.png","point.png") + " "
+        System.out.println("ͼƬ��֤: "+  ImgChkHelper.validImage("ps.png","point.png") + " "
                 +  ImgChkHelper.validImage("ps.png","target.png"));
 
         context = new BaseQQWindowContext(new File(picName)) {

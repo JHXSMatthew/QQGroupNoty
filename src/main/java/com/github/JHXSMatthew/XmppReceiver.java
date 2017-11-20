@@ -29,12 +29,12 @@ public class XmppReceiver {
         this.observer = observer;
         loadConfig();
         setUp();
-        System.out.println("é…ç½®åŠ è½½å®Œæˆ....");
+        System.out.println("ÅäÖÃ¼ÓÔØÍê³É....");
 
-        System.out.println("è¿žæŽ¥ä¸­...");
+        System.out.println("Á¬½ÓÖÐ...");
 
         connect();
-        System.out.println("ç™»é™†æˆåŠŸ,å½“å‰ç”¨æˆ· Jid: " + client.getConnectedResource());
+        System.out.println("µÇÂ½³É¹¦,µ±Ç°ÓÃ»§ Jid: " + client.getConnectedResource());
 
 
     }
@@ -46,12 +46,7 @@ public class XmppReceiver {
         client.addInboundMessageListener(e ->{
             Message message = e.getMessage();
             System.err.println("------------------------------------");
-            System.err.println("New Message");
-            System.err.println("Message Type: " + message.getType().name());
-            System.err.println("Message Subject " + message.getSubject());
             System.err.println("Message: " + message.getBody());
-            System.err.println("From" + e.getSource().toString());
-            System.err.println(message.toString());
             System.err.println("------------------------------------");
             if(message.getFrom().toString().contains("directorbot")){
               observer.onMessageReceived(message);
