@@ -36,12 +36,27 @@ public class XmppReceiver {
         connect();
         System.out.println("登陆成功,当前用户 Jid: " + client.getConnectedResource());
 
-
     }
 
     private void connect() throws XmppException {
+        System.out.println(" - 准备创建实例,连接至:" + HOST);
+
         client = XmppClient.create(HOST);
-        client.connect();
+
+        System.out.println(" - 实例创建完毕");
+        boolean connected = false;
+        while (!connected){
+            try {
+                System.out.println(" - 尝试链接");
+                client.connect();
+                connected = true;
+            } catch (Exception e) {
+                System.out.println(" - 失败");
+                System.out.println(e.getMessage());
+
+            }
+         }
+        System.out.println(" - 链接成功！");
 
         client.addInboundMessageListener(e ->{
             Message message = e.getMessage();
@@ -52,13 +67,29 @@ public class XmppReceiver {
               observer.onMessageReceived(message);
             }
         });
+        System.out.println(" - 监听器创建完毕");
 
+        System.out.println(" - 尝试登录?");
         client.login(USERNAME,PASSWORD);
+        System.out.println(" - 登录成功");
+
     }
 
     public void run() throws InterruptedException {
         synchronized (this) {
-            wait();
+            while (true) {
+                wait();
+                try {
+                    client.close();
+                } catch (XmppException e) {
+                    e.printStackTrace();
+                }
+                try {
+                    connect();
+                } catch (XmppException e) {
+                    e.printStackTrace();
+                }
+            }
         }
     }
 
@@ -79,6 +110,16 @@ public class XmppReceiver {
             .port(Integer.parseInt(PORT))
             .build();
     }
+
+    public boolean isConnected(){
+        return client.isConnected();
+    }
+
+    public boolean isAuth(){
+        return client.isAuthenticated();
+    }
+
+
 
 
 }

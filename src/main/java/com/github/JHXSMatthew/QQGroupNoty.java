@@ -19,8 +19,8 @@ public class QQGroupNoty implements Callback{
 
 
     public QQGroupNoty() throws IOException, AWTException, XmppException, NativeHookException {
-        bot = new QQBot(POINT_PICTURE);
         receiver = new XmppReceiver(this);
+        bot = new QQBot(POINT_PICTURE,receiver);
 
         try {
             receiver.run();
@@ -39,6 +39,6 @@ public class QQGroupNoty implements Callback{
 
     @Override
     public void onMessageReceived(Message message) {
-        bot.sendMessage(message.getBody());
+        bot.sendMessageAll(message.getBody());
     }
 }

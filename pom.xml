@@ -10,22 +10,28 @@
     <build>
         <plugins>
             <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <configuration>
                     <source>1.8</source>
                     <target>1.8</target>
                 </configuration>
             </plugin>
-
             <plugin>
                 <artifactId>maven-assembly-plugin</artifactId>
+                <version>2.3</version>
+                <executions>
+                    <execution>
+                        <id>make-assembly</id> <!-- this is used for inheritance merges -->
+                        <phase>package</phase> <!-- bind to the packaging phase -->
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                    </execution>
+                </executions>
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>
-                                com.github.JHXSMatthew.QQGroupNoty
-                            </mainClass>
+                            <mainClass>com.github.JHXSMatthew.QQGroupNoty</mainClass>
                         </manifest>
                     </archive>
                     <descriptorRefs>
@@ -48,20 +54,20 @@
         </dependency>
 
         <dependency>
-        <groupId>rocks.xmpp</groupId>
-        <artifactId>xmpp-core-client</artifactId>
-        <version>0.7.4</version>
-    </dependency>
-    <dependency>
-        <groupId>rocks.xmpp</groupId>
-        <artifactId>xmpp-extensions-client</artifactId>
-        <version>0.7.4</version>
-    </dependency>
-    <dependency>
-        <groupId>foolqq</groupId>
-        <artifactId>foolqq</artifactId>
-        <version>1.2</version>
-    </dependency>
+            <groupId>rocks.xmpp</groupId>
+            <artifactId>xmpp-core-client</artifactId>
+            <version>0.7.4</version>
+         </dependency>
+        <dependency>
+            <groupId>rocks.xmpp</groupId>
+            <artifactId>xmpp-extensions-client</artifactId>
+            <version>0.7.4</version>
+         </dependency>
+        <dependency>
+            <groupId>foolqq</groupId>
+            <artifactId>foolqq</artifactId>
+            <version>1.4</version>
+        </dependency>
     </dependencies>
 
 </project>
