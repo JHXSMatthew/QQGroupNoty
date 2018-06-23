@@ -10,7 +10,7 @@ A QQ Chat Bot Application for Evn Online Jabber notification.
 ### Configuration
 A configuration file is required in the root directory, config in the format
 
-<HOST>|<PORT>|<UserName>|<Password>|
+HOST|PORT|UserName|Password|
 
 e.g. 
 
